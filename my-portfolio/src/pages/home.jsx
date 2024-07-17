@@ -7,18 +7,12 @@ import './homepage.css';
 const HomePage = () => {
   const [loading, setLoading] = useState(true);
   const [soundMuted, setSoundMuted] = useState(true);
-  const [stars, setStars] = useState([]);
 
   useEffect(() => {
-    const starCount = 100;
-    const newStars = [];
-    for (let i = 0; i < starCount; i++) {
-      const x = Math.random() * 100;
-      const y = Math.random() * 100;
-      const duration = Math.random() * 2;
-      newStars.push({ x, y, duration });
-    }
-    setStars(newStars);
+    // Simulate loading effect (you can replace this with actual loading logic)
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
   }, []);
 
   const toggleSound = () => {
@@ -40,21 +34,6 @@ const HomePage = () => {
       {/* Dark Overlay */}
       <div className="bg-overlay"></div>
 
-      {/* Stars */}
-      <div className="stars">
-        {stars.map((star, index) => (
-          <div
-            key={index}
-            className="star"
-            style={{
-              top: `${star.y}%`,
-              left: `${star.x}%`,
-              animationDuration: `${star.duration}s`
-            }}
-          ></div>
-        ))}
-      </div>
-
       {/* Mute/Unmute button */}
       <button
         className="absolute top-4 right-4 bg-white text-black px-4 py-2 rounded-md"
@@ -64,35 +43,40 @@ const HomePage = () => {
         {soundMuted ? 'Unmute' : 'Mute'}
       </button>
 
-      {/* Content */}
-      <motion.div
-        className="max-w-4xl mx-auto p-8 text-white z-10"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <h1 className="text-6xl font-bold mb-6 animate-pop">Your Name</h1>
-        <p className="text-lg text-gray-300 mb-8">Frontend Developer | UI/UX Enthusiast</p>
-        <p className="text-gray-300 mb-6">
-          Welcome to my portfolio website! I'm passionate about creating user-friendly interfaces and crafting engaging web experiences.
-        </p>
-        <div className="flex space-x-4">
-          <a
-            href="#projects"
-            className="bg-blue-500 hover:bg-green-600 text-white py-3 px-6 rounded-md text-lg transition duration-200"
-            style={{ textDecoration: 'none' }}
-          >
-            View Projects
-          </a>
-          <Link
-            to="/about"
-            className="bg-yellow-500 hover:bg-yellow-600 text-white py-3 px-6 rounded-md text-lg transition duration-200"
-            style={{ textDecoration: 'none' }}
-          >
-            About Me
-          </Link>
-        </div>
-      </motion.div>
+      {/* Centered Content */}
+      <div className="min-h-screen flex justify-center items-center z-10">
+        <motion.div
+          className="max-w-4xl mx-auto p-8 text-white"
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <div className="centered-content">
+            <h1 className="hero-title animate-pop">Bonny David</h1>
+            <p className="text-lg text-gray-300 mb-8">Frontend Developer | UI/UX Enthusiast</p>
+            <p className="text-gray-300 mb-6">
+              Welcome to my portfolio website! I'm a passionate Frontend Developer and UI/UX Enthusiast. With a keen eye for design and a love for creating intuitive user experiences, I thrive on building web applications that are not only functional but also visually appealing. My journey in web development has been fueled by my curiosity and drive to constantly learn and adapt to the ever-evolving landscape of technology. Alongside my frontend expertise, I have experience working with Firebase for backend services, and I am always eager to dive into backend development when the project demands it.
+            </p>
+
+            <div className="flex space-x-4">
+              <a
+                href="#projects"
+                className="bg-blue-500 hover:bg-green-600 text-white py-3 px-6 rounded-md text-lg transition duration-200"
+                style={{ textDecoration: 'none' }}
+              >
+                View Projects
+              </a>
+              <Link
+                to="/about"
+                className="bg-yellow-500 hover:bg-yellow-600 text-white py-3 px-6 rounded-md text-lg transition duration-200"
+                style={{ textDecoration: 'none' }}
+              >
+                About Me
+              </Link>
+            </div>
+          </div>
+        </motion.div>
+      </div>
 
       {/* Scroll indicator */}
       <div className="absolute bottom-4 w-full flex justify-center">
